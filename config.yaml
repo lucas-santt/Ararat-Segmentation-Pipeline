@@ -1,0 +1,33 @@
+extraction_params:
+  # Caminho para o diretório raiz do dataset PROSTATEx, relativo à pasta do projeto.
+  data_root: 'data/PROSTATEx'
+  
+  # Nome da planilha CSV com as informações das lesões.
+  findings_csv: 'ProstateX-2-Findings-Train.csv'
+  
+  # Lista de sequências de RM para processar.
+  # O 'series_description_keyword' deve ser uma string única que identifica
+  # a pasta da sequência (ex: 't2_tse_tra', 'adc').
+  # O 'output_filename' é o nome do arquivo CSV que será gerado.
+  sequences_to_process:
+    - series_description_keyword: 't2_tse_tra'
+      output_filename: 'radiomics_features_t2.csv'
+    - series_description_keyword: 'adc'
+      output_filename: 'radiomics_features_adc.csv'
+      
+  # Parâmetros de pré-processingamento de imagem (controla a classe Preprocessor).
+  preprocessing:
+    # Habilita (true) ou desabilita (false) todo o pré-processamento.
+    enabled: true
+    
+    # Configuração do resampling. Garante que todas as imagens tenham o mesmo espaçamento de voxel.
+    resampling:
+      enabled: true
+      # Espaçamento em mm para [x, y, z]. [1.5, 1.5, 3.0] é um valor comum para próstata.
+      spacing: [1.5, 1.5, 3.0]
+      
+    # Configuração da normalização. Padroniza a escala de intensidade dos pixels.
+    normalization:
+      enabled: true
+      # 'zscore' é o método recomendado, colocando a média em 0 e desvio padrão em 1.
+      method: 'zscore'
