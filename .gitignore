@@ -1,13 +1,14 @@
+# Environment folders
 .venv/
 venv/
+
+.vscode/
 
 __pycache__/
 *.pyc
 
+# Data folders
 data/
 *.csv
 
-AutoML_SHAP_Analysis/
-AutoML_*
-
-results/
+output/
